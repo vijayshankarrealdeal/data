@@ -1,5 +1,6 @@
 anyio==3.6.1
 asgiref==3.5.2
+guicorn
 category-encoders==2.1.0
 certifi==2022.5.18.1
 charset-normalizer==2.0.12
@@ -15,7 +16,7 @@ joblib==0.14.1
 mpmath==1.2.1
 numpy==1.22.4
 packaging==21.3
-pandas==1.0.3
+pandas
 patsy==0.5.2
 pydantic==1.9.1
 pyparsing==3.0.9
