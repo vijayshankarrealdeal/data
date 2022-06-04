@@ -9,6 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import cv2
 import numpy as np
 from deta import Deta
+from fastapi.staticfiles import StaticFiles
 
 ###
 keyy = 'c005yeq6_CUCLAefVYejHYf3dbmh1GMXBPsWJGbcr'
@@ -38,6 +39,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+
+app.mount("/files", StaticFiles(directory="files"), name="files")
 
 @app.get('/')
 def predictX(area, day, month, year, state):
