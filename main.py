@@ -4,7 +4,6 @@ import pandas as pd
 from joblib import load
 from sympy import print_rcode
 import requests
-from fastapi.middleware.cors import CORSMiddleware
 #import tensorflow as tf
 import cv2
 import numpy as np
@@ -29,15 +28,6 @@ drive = deta.Drive("detax")
 
 app = FastAPI()
 
-origins = ["*"]
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 
 
@@ -64,12 +54,6 @@ def predictX(area, day, month, year, state):
 def getAll():
     _data = imgdata.sample(n=16).reset_index()
     return [_data.iloc[:,1:].T.to_dict()[i] for i in _data.iloc[:,1:].T.to_dict()]
-
-
-@app.get("/download/{name}")
-def download_img(name: str):
-    res = drive.get(name)
-    return StreamingResponse(res.iter_chunks(1024), media_type="image/png")
 
 
 
